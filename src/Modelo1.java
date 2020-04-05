@@ -6,47 +6,49 @@ public class Modelo1 {
 	}
 
 	public int comprobarCP(String cp) {
-		int opcion = 0;
-		int contadorError = 0;
-		int contador = 0;
+		int respuesta = 0;
+		boolean incorrectos = false;
+		boolean longitud = false;
 		if (cp.length() == 5) {
-			char[] array = cp.toCharArray();
-			for (int i = 0; i < array.length; i++) {
-				int caracter = (int) array[i];
+			char[] arraychars = cp.toCharArray();
+			for (int i = 0; i < arraychars.length; i++) {
+				int caracter = (int) arraychars[i];
 				if (caracter < 48 || caracter > 57) {
-					contadorError++;
+					incorrectos = true;
 				}
 			}
 		} else {
-			contador++;
+			longitud = true;
 		}
-		if (contadorError == 0 && contador == 0) {
-			opcion = 1;
-		} else if (contadorError == 0 && contador >= 0) {
-			opcion = 2;
+
+		if (longitud == false && incorrectos == false) {
+			respuesta = 1;
+		} else if (incorrectos == false && longitud == true) {
+			respuesta = 2;
 		} else {
-			opcion = 3;
+			respuesta = 3;
 		}
-		return opcion;
+		return respuesta;
 	}
 
 	public String mayusculas(String palabra) {
-		char[] array = palabra.toCharArray();
-		String caracter = "";
-		String concatenar = "";
-		for (int i = 0; i < array.length; i++) {
-			char c = array[i];
-			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'
-					|| c == 'U') {
-				caracter = Character.toString(Character.toUpperCase(c));
+		String letra;
+		String palabraFinal = "";
+		char[] listaPalabra = palabra.toCharArray();
+		for (int i = 0; i < listaPalabra.length; i++) {
+			char c = Character.toLowerCase(listaPalabra[i]);
+			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+				char mayuscula = Character.toUpperCase(c);
+				letra = Character.toString(mayuscula);
 			} else {
-				caracter = Character.toString(Character.toLowerCase(c));
+				char minuscula = Character.toUpperCase(c);
+				letra = Character.toString(Character.toLowerCase(minuscula));
 			}
-			concatenar += caracter;
+			palabraFinal += letra;
 		}
-
-		return concatenar;
-
+		
+		return palabraFinal;
+		
 	}
 
 	public String orden(String[] nums) {

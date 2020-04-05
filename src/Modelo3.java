@@ -10,132 +10,135 @@ public class Modelo3 {
 
 	public String getUsr() {
 		Properties propiedades = new Properties();
-		InputStream entrada = null;
-		String usuario = "";
+		InputStream lectura = null;
+		String usr = "";
 		try {
-			File miFichero = new File("src/Recuperacion/Config.ini");
-			if (miFichero.exists()) {
-				entrada = new FileInputStream(miFichero);
-				propiedades.load(entrada);
-				usuario = propiedades.getProperty("usuario");
-
-			} else
+			File fichero = new File("src/Recuperacion/Config.ini");
+			if (fichero.exists()) {
+				lectura = new FileInputStream(fichero);
+				propiedades.load(lectura);
+				usr = propiedades.getProperty("usuario");
+			} else {
 				System.err.println("Fichero no encontrado");
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
-			if (entrada != null) {
+			if (lectura != null) {
 				try {
-					entrada.close();
+					lectura.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return usuario;
+		return usr;
 	}
+
 
 	public String getPwd() {
 		Properties propiedades = new Properties();
-		InputStream entrada = null;
-		String contrasena = "";
+		InputStream lectura = null;
+		String pwd = "";
 		try {
-			File miFichero = new File("src/Recuperacion/Config.ini");
-			if (miFichero.exists()) {
-				entrada = new FileInputStream(miFichero);
-				propiedades.load(entrada);
-				contrasena = propiedades.getProperty("contrasena");
-
-			} else
+			File fichero = new File("src/Recuperacion/Config.ini");
+			if (fichero.exists()) {
+				lectura = new FileInputStream(fichero);
+				propiedades.load(lectura);
+				pwd = propiedades.getProperty("password");
+			} else {
 				System.err.println("Fichero no encontrado");
+			}
+
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
-			if (entrada != null) {
+			if (lectura != null) {
 				try {
-					entrada.close();
+					lectura.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return contrasena;
+		return pwd;
 	}
 
 	public String getUrl() {
 		Properties propiedades = new Properties();
-		InputStream entrada = null;
-		String URL = "";
+		InputStream lectura = null;
+		String url = "";
 		try {
-			File miFichero = new File("src/Recuperacion/Config.ini");
-			if (miFichero.exists()) {
-				entrada = new FileInputStream(miFichero);
-				propiedades.load(entrada);
-				URL = propiedades.getProperty("URL");
-
-			} else
+			File fichero = new File("src/Recuperacion/Config.ini");
+			if (fichero.exists()) {
+				lectura = new FileInputStream(fichero);
+				propiedades.load(lectura);
+				url = propiedades.getProperty("url");
+			} else {
 				System.err.println("Fichero no encontrado");
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
-			if (entrada != null) {
+			if (lectura != null) {
 				try {
-					entrada.close();
+					lectura.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return URL;
+		return url;
 	}
 
 	public String getNotes() {
 		Properties propiedades = new Properties();
-		InputStream entrada = null;
-		String notas = "";
+		InputStream lectura = null;
+		String notes = "";
 		try {
-			File miFichero = new File("src/Recuperacion/Config.ini");
-			if (miFichero.exists()) {
-				entrada = new FileInputStream(miFichero);
-				propiedades.load(entrada);
-				notas = propiedades.getProperty("notas");
-
-			} else
+			File fichero = new File("src/Recuperacion/Config.ini");
+			if (fichero.exists()) {
+				lectura = new FileInputStream(fichero);
+				propiedades.load(lectura);
+				notes = propiedades.getProperty("notas");
+			} else {
 				System.err.println("Fichero no encontrado");
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
-			if (entrada != null) {
+			if (lectura != null) {
 				try {
-					entrada.close();
+					lectura.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return notas;
+		return notes;
 	}
 
 	public String setData(String usr, String pwd, String url, String notes) {
 		Properties propiedades = new Properties();
-		OutputStream salida = null;
+		OutputStream escritura = null;
 		try {
-			File miFichero = new File("src/Recuperacion/Config.ini");
-			if (miFichero.exists()) {
-				salida = new FileOutputStream(miFichero);
+			File fichero = new File("src/Recuperacion/Config.ini");
+			if (fichero.exists()) {
+				escritura = new FileOutputStream(fichero);
 				propiedades.setProperty("usuario", usr);
-				propiedades.setProperty("contrasena", pwd);
-				propiedades.setProperty("URL", url);
+				propiedades.setProperty("password", pwd);
+				propiedades.setProperty("url", url);
 				propiedades.setProperty("notas", notes);
-				propiedades.store(salida, "Guardado en fichero");
-			} else
+				propiedades.store(escritura, "Datos guardados");
+			} else {
 				System.err.println("Fichero no encontrado");
+			}
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
-			if (salida != null) {
+			if (escritura != null) {
 				try {
-					salida.close();
+					escritura.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -29,39 +29,43 @@ class Alumno {
 	}
 
 	public String nueva(String nombre, String nota) {
-		int notaInt = Integer.parseInt(nota);
-		Asignatura asignatura = new Asignatura(nombre, notaInt);
-		listaAsignaturas.add(asignatura);
-		int numeroAsignaturas = listaAsignaturas.size();
-		String StringNumeroAsignaturas = Integer.toString(numeroAsignaturas);
-		return StringNumeroAsignaturas;
+		Asignatura a;
+		if(!nombre.isEmpty() && !nota.isEmpty()) {
+			a = new Asignatura(nombre, Integer.parseInt(nota));
+			listaAsignaturas.add(a);
+		}		
+		String size= Integer.toString(listaAsignaturas.size());		
+		return size;
 	}
 
 	public String media() {
-		int notaMedia = 0;
-		int contador = 0;
-		for (Asignatura asignatura : listaAsignaturas) {
-			notaMedia += asignatura.getNota();
+		int media=0;
+		for (int i = 0; i < listaAsignaturas.size(); i++) {
+			media+=listaAsignaturas.get(i).getNota();
 		}
-		String notaFinalString = Integer.toString(notaMedia / listaAsignaturas.size());
-		return notaFinalString;
+		int tamano=listaAsignaturas.size();
+		int mediaInt=media/tamano;
+		String mediaFinal= Integer.toString(mediaInt);
+		return mediaFinal;
 	}
 
 	public String nota(String nombre) {
-		int notaAsignatura = 0;
-		int contador = 0;
-		String respuesta = "";
-		for (Asignatura asignatura : listaAsignaturas) {
-			if (asignatura.getNombre().equals(nombre)) {
-				notaAsignatura += asignatura.getNota();
+		int nota = 0;
+		boolean no = false;
+		String respuesta;
+		for (int i = 0; i < listaAsignaturas.size(); i++) {
+			String nombreLista = listaAsignaturas.get(i).getNombre();
+			if (nombreLista.equals(nombre)) {
+				nota = listaAsignaturas.get(i).getNota();
 			} else {
-				contador++;
+				no = true;
 			}
 		}
-		if (contador == 0) {
+		String notaString = Integer.toString(nota);
+		if (no == false) {
 			respuesta = "No existe";
 		} else {
-			respuesta = Integer.toString(notaAsignatura);
+			respuesta = notaString;
 		}
 		return respuesta;
 	}
